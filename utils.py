@@ -44,17 +44,6 @@ def load_data():
     return category_lines, all_categories
 
 
-"""
-To represent a single letter, we use a “one-hot vector” of 
-size <1 x n_letters>. A one-hot vector is filled with 0s
-except for a 1 at index of the current letter, e.g. "b" = <0 1 0 0 0 ...>.
-To make a word we join a bunch of those into a
-2D matrix <line_length x 1 x n_letters>.
-That extra 1 dimension is because PyTorch assumes
-everything is in batches - we’re just using a batch size of 1 here.
-"""
-
-
 # Find letter index from all_letters, e.g. "a" = 0
 def letter_to_index(letter):
     return ALL_LETTERS.find(letter)
@@ -86,7 +75,6 @@ def random_training_example(category_lines, all_categories):
     category_tensor = torch.tensor([all_categories.index(category)], dtype=torch.long)
     line_tensor = line_to_tensor(line)
     return category, line, category_tensor, line_tensor
-
 
 
 if __name__ == '__main__':
